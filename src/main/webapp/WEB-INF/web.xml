@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+    <display-name>Elective courses</display-name>
+
+    <servlet>
+        <servlet-name>FrontControllerServlet</servlet-name>
+        <servlet-class>com.epam.altynbekova.elective.servlet.FrontControllerServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FrontControllerServlet</servlet-name>
+        <url-pattern>/do/*</url-pattern>
+    </servlet-mapping>
+
+    <session-config>
+        <session-timeout>30</session-timeout>
+    </session-config>
+
+    <filter>
+        <filter-name>EncodingFilter</filter-name>
+        <filter-class>com.epam.altynbekova.elective.filter.EncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>utf-8</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>EncodingFilter</filter-name>
+        <url-pattern>/do/*</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>RoleActionsFilter</filter-name>
+        <filter-class>com.epam.altynbekova.elective.filter.RoleActionsFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>RoleActionsFilter</filter-name>
+        <url-pattern>/do/*</url-pattern>
+    </filter-mapping>
+
+    <welcome-file-list>
+        <welcome-file>/WEB-INF/jsp/index.jsp</welcome-file>
+    </welcome-file-list>
+
+    <error-page>
+        <error-code>403</error-code>
+        <location>/do/*</location>
+    </error-page>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/do/*</location>
+    </error-page>
+    <error-page>
+        <exception-type>java.lang.Throwable</exception-type>
+        <location>/do/*</location>
+    </error-page>
+
+    <jsp-config>
+        <taglib>
+            <taglib-uri>customtag</taglib-uri>
+            <taglib-location>/WEB-INF/tld/custom.tld</taglib-location>
+        </taglib>
+    </jsp-config>
+</web-app>
