@@ -2,7 +2,6 @@ package com.epam.altynbekova.elective.dao;
 
 import com.epam.altynbekova.elective.entity.Student;
 import com.epam.altynbekova.elective.exception.DaoException;
-import com.epam.altynbekova.elective.exception.JdbcDaoException;
 
 import java.util.List;
 

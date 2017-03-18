@@ -4,7 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class PropertyManagerException extends Exception {
-    public static final Logger LOG= LoggerFactory.getLogger(PropertyManagerException.class);
+    private static final Logger LOG= LoggerFactory.getLogger(PropertyManagerException.class);
 
     public PropertyManagerException(String message) {
         super(message);

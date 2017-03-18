@@ -9,8 +9,6 @@ import com.epam.altynbekova.elective.exception.JdbcDaoException;
 import com.epam.altynbekova.elective.exception.NotUniqueJdbcDaoException;
 import com.epam.altynbekova.elective.exception.PropertyManagerException;
 import com.epam.altynbekova.elective.util.PropertyManager;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -23,7 +21,6 @@ import java.util.List;
 import java.util.Map;
 
 class JdbcStudentDao extends JdbcDao<Student> implements StudentDao {
-    private static final Logger LOG = LoggerFactory.getLogger(JdbcStudentDao.class);
     private static final String INSERT_QUERY_KEY = "insert.user.student";
     private static final String INSERT_REF_QUERY_KEY = "insert.student.reference";
     private static final String STUDENT_ID_COLUMN = "STUDENT_ID";
@@ -189,7 +186,6 @@ class JdbcStudentDao extends JdbcDao<Student> implements StudentDao {
                 Map<Course, Completion> courses = student.getCourses();
                 if (!courses.isEmpty()) {
                     for (Course course : courses.keySet()) {
-                        int id = course.getId();
                         ps.setInt(INDEX_2, course.getId());
                         break;
                     }

@@ -1,7 +1,6 @@
 package com.epam.altynbekova.elective.dao;
 
 import com.epam.altynbekova.elective.dao.jdbc.JdbcDaoFactory;
-import com.epam.altynbekova.elective.entity.Lecturer;
 import com.epam.altynbekova.elective.exception.DaoException;
 import com.epam.altynbekova.elective.exception.JdbcDaoException;
 

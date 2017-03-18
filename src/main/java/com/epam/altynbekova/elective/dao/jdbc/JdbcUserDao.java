@@ -18,12 +18,12 @@ import java.text.MessageFormat;
 import java.util.List;
 
 public class JdbcUserDao extends JdbcDao<User> implements UserDao {
-    public static final Logger LOG = LoggerFactory.getLogger(JdbcUserDao.class);
-    public static final String INSERT_USER_QUERY_KEY = "insert.user";
-    static final String SELECT_BY_LOGIN_QUERY_KEY = "find.user.by.login";
+    private static final Logger LOG = LoggerFactory.getLogger(JdbcUserDao.class);
+    private static final String INSERT_USER_QUERY_KEY = "insert.user";
+    private final String SELECT_BY_LOGIN_QUERY_KEY = "find.user.by.login";
     private static final String SELECT_BY_ID_QUERY_KEY = "find.user.by.id";
 
-    public JdbcUserDao(Connection connection) {
+    JdbcUserDao(Connection connection) {
         super(connection);
     }
 

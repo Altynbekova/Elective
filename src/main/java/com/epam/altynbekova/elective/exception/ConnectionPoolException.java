@@ -3,7 +3,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class ConnectionPoolException extends Exception {
-    public static final Logger LOG= LoggerFactory.getLogger(ConnectionPoolException.class);
+    private static final Logger LOG= LoggerFactory.getLogger(ConnectionPoolException.class);
 
     public ConnectionPoolException(String message) {
         super(message);

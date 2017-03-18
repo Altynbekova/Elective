@@ -4,7 +4,6 @@ import com.epam.altynbekova.elective.entity.Completion;
 import com.epam.altynbekova.elective.entity.Course;
 import com.epam.altynbekova.elective.entity.User;
 import com.epam.altynbekova.elective.exception.DaoException;
-import com.epam.altynbekova.elective.exception.JdbcDaoException;
 
 import java.util.List;
 import java.util.Map;

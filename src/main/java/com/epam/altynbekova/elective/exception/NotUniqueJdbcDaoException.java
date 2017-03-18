@@ -1,7 +1,5 @@
 package com.epam.altynbekova.elective.exception;
 
-import java.sql.SQLException;
-
 public class NotUniqueJdbcDaoException extends RuntimeException {
     public NotUniqueJdbcDaoException() {
     }

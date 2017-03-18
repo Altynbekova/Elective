@@ -1,7 +1,5 @@
 package com.epam.altynbekova.elective.entity;
 
-import java.util.Set;
-
 public class Lecturer extends User{
     private String jobTitle;
 
@@ -30,19 +28,4 @@ public class Lecturer extends User{
         this.jobTitle = jobTitle;
     }
 
-    private enum JobTitle {
-        PROFESSOR("Professor"),
-        ASSOCIATE_PROFESSOR("Associate professor"),
-        SENIOR_LECTURER("Senior lecturer");
-
-        private String value;
-
-        JobTitle(String value) {
-            this.value = value;
-        }
-
-        public String getValue() {
-            return value;
-        }
-    }
 }

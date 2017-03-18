@@ -1,8 +1,6 @@
 package com.epam.altynbekova.elective.entity;
 
-import java.util.Comparator;
-
-public class Course extends BaseEntity{
+public class Course extends BaseEntity {
     private String name;
     private String description;
     private boolean isAvailable;
@@ -15,7 +13,7 @@ public class Course extends BaseEntity{
         super(id);
         this.name = name;
         this.description = description;
-        this.isAvailable=isAvailable;
+        this.isAvailable = isAvailable;
         this.lecturer = lecturer;
     }
 
@@ -64,9 +62,4 @@ public class Course extends BaseEntity{
         this.lecturer = lecturer;
     }
 
-    public int compareTo (Course course){
-        int result=this.getName().compareToIgnoreCase(course.getName());
-        if(result==0)result=Integer.compare(this.getId(),course.getId());
-        return result;
-    }
 }

@@ -5,8 +5,6 @@ import com.epam.altynbekova.elective.entity.Lecturer;
 import com.epam.altynbekova.elective.exception.JdbcDaoException;
 import com.epam.altynbekova.elective.exception.PropertyManagerException;
 import com.epam.altynbekova.elective.util.PropertyManager;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,11 +14,10 @@ import java.text.MessageFormat;
 import java.util.List;
 
 public class JdbcLecturerDao extends JdbcDao<Lecturer> implements LecturerDao {
-    private static final Logger LOG = LoggerFactory.getLogger(JdbcLecturerDao.class);
     private static final String INSERT_QUERY_KEY = "insert.user.lecturer";
     private static final String INSERT_REF_QUERY_KEY = "insert.lecturer";
 
-    public JdbcLecturerDao(Connection connection) {
+    JdbcLecturerDao(Connection connection) {
         super(connection);
     }
 

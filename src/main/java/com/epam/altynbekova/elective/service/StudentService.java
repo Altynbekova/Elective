@@ -3,19 +3,13 @@ package com.epam.altynbekova.elective.service;
 import com.epam.altynbekova.elective.dao.DaoFactory;
 import com.epam.altynbekova.elective.dao.StudentDao;
 import com.epam.altynbekova.elective.dao.UserDao;
-import com.epam.altynbekova.elective.dao.jdbc.JdbcDaoFactory;
-import com.epam.altynbekova.elective.entity.Role;
 import com.epam.altynbekova.elective.entity.Student;
-import com.epam.altynbekova.elective.entity.User;
 import com.epam.altynbekova.elective.exception.DaoException;
 import com.epam.altynbekova.elective.exception.EntityExistsException;
 import com.epam.altynbekova.elective.exception.NotUniqueJdbcDaoException;
 import com.epam.altynbekova.elective.exception.ServiceException;
 import org.mindrot.jbcrypt.BCrypt;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-import java.text.MessageFormat;
 import java.util.List;
 
 public class StudentService {

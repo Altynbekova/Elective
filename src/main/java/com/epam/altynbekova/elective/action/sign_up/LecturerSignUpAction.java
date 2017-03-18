@@ -1,16 +1,12 @@
-package com.epam.altynbekova.elective.action.signUp;
+package com.epam.altynbekova.elective.action.sign_up;
 
 import com.epam.altynbekova.elective.entity.Lecturer;
 import com.epam.altynbekova.elective.entity.Role;
 import com.epam.altynbekova.elective.exception.EntityExistsException;
 import com.epam.altynbekova.elective.exception.ServiceException;
-import com.epam.altynbekova.elective.exception.SignUpActionException;
 import com.epam.altynbekova.elective.service.LecturerService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletRequest;
-import java.text.MessageFormat;
 
 class LecturerSignUpAction extends UserSignUpAction<Lecturer> {
     private static final String REDIRECT_TO_REGISTER_PAGE = "redirect:/do/?action=show-sign-up-form&role=lecturer";

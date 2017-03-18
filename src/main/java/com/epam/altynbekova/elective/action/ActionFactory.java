@@ -3,14 +3,10 @@ package com.epam.altynbekova.elective.action;
 import com.epam.altynbekova.elective.exception.ActionFactoryException;
 import com.epam.altynbekova.elective.exception.PropertyManagerException;
 import com.epam.altynbekova.elective.util.PropertyManager;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-import javax.servlet.http.HttpServletRequest;
 import java.text.MessageFormat;
 
 public class ActionFactory {
-    private static final Logger LOG = LoggerFactory.getLogger(ActionFactory.class);
     private static final String ACTION_PROPS_FILE_NAME = "action.properties";
     private PropertyManager propertyManager;
 

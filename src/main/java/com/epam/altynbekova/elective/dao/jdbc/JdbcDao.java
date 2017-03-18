@@ -2,12 +2,10 @@ package com.epam.altynbekova.elective.dao.jdbc;
 
 import com.epam.altynbekova.elective.dao.Dao;
 import com.epam.altynbekova.elective.entity.BaseEntity;
-import com.epam.altynbekova.elective.exception.DaoException;
 import com.epam.altynbekova.elective.exception.JdbcDaoException;
 import com.epam.altynbekova.elective.exception.NotUniqueJdbcDaoException;
 import com.epam.altynbekova.elective.exception.PropertyManagerException;
 import com.epam.altynbekova.elective.util.PropertyManager;
-import org.h2.jdbc.JdbcSQLException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -27,7 +25,6 @@ abstract class JdbcDao<T extends BaseEntity> implements Dao<T> {
     protected static final String LAST_NAME_COLUMN = "USER.LAST_NAME";
     protected static final String ROLE_NAME_COLUMN = "ROLE_NAME";
     protected static final int NOT_UNIQUE_ERROR_VENDOR_CODE = 23505;
-    protected static final int FIRST_LIST_ELEMENT_INDEX = 0;
     protected static final int INDEX_1 = 1;
     protected static final int INDEX_2 = 2;
     protected static final int INDEX_3 = 3;
@@ -35,6 +32,7 @@ abstract class JdbcDao<T extends BaseEntity> implements Dao<T> {
     protected static final int INDEX_5 = 5;
     private static final Logger LOG = LoggerFactory.getLogger(JdbcDao.class);
     private static final String QUERY_FILE_NAME = "query.properties";
+    private static final int FIRST_LIST_ELEMENT_INDEX = 0;
     protected Connection connection;
 
     public JdbcDao(Connection connection) {
@@ -108,7 +106,7 @@ abstract class JdbcDao<T extends BaseEntity> implements Dao<T> {
     public List<T> findAllByName(String entityName) throws JdbcDaoException {
         String query = getQuery(getSelectByNameQueryKey());
         try (PreparedStatement ps = connection.prepareStatement(query)) {
-            List<T> entities = new ArrayList<T>();
+            List<T> entities = new ArrayList<>();
             ps.setString(INDEX_1, entityName);
             ResultSet rs = ps.executeQuery();
             setResultSetTo(entities, rs);

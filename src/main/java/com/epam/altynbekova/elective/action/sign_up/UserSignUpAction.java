@@ -1,4 +1,4 @@
-package com.epam.altynbekova.elective.action.signUp;
+package com.epam.altynbekova.elective.action.sign_up;
 
 import com.epam.altynbekova.elective.action.AbstractAction;
 import com.epam.altynbekova.elective.entity.User;

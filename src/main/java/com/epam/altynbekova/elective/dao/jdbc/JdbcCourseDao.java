@@ -42,7 +42,7 @@ public class JdbcCourseDao extends JdbcDao<Course> implements CourseDao {
     private static final String GRADE_COLUMN = "GRADE";
     private static final String FEEDBACK_COLUMN = "FEEDBACK";
 
-    public JdbcCourseDao(Connection connection) {
+    JdbcCourseDao(Connection connection) {
         super(connection);
     }
 

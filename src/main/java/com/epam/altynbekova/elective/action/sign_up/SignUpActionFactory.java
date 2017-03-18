@@ -1,4 +1,4 @@
-package com.epam.altynbekova.elective.action.signUp;
+package com.epam.altynbekova.elective.action.sign_up;
 
 class SignUpActionFactory {
     public SignUpActionFactory() {

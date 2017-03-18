@@ -1,7 +1,6 @@
 package com.epam.altynbekova.elective.action;
 
 import com.epam.altynbekova.elective.exception.ActionException;
-import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
