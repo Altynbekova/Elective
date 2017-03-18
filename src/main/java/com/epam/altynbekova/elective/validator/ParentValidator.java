@@ -12,16 +12,6 @@ public class ParentValidator implements Validator {
         return null;
     }
 
-    @Override
-    public Boolean isValid(String parameter, String otherParameter) {
-        return null;
-    }
-
-    @Override
-    public Boolean isValid(Long parameter) {
-        return null;
-    }
-
     public String getMessage() {
         return message;
     }
