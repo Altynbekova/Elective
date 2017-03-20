@@ -6,6 +6,7 @@ import com.epam.altynbekova.elective.entity.Student;
 import com.epam.altynbekova.elective.exception.ActionException;
 import com.epam.altynbekova.elective.exception.ServiceException;
 import com.epam.altynbekova.elective.service.StudentService;
+import com.epam.altynbekova.elective.util.ActionConstant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,8 +27,8 @@ public class ShowStudentAction extends AbstractAction {
         Student student = new Student();
         int courseId;
         int studentId;
-        String courseIdParamValue = request.getParameter(COURSE_ID_PARAM);
-        String studIdParamValue = request.getParameter(STUDENT_ID_PARAM);
+        String courseIdParamValue = request.getParameter(ActionConstant.COURSE_ID_PARAM);
+        String studIdParamValue = request.getParameter(ActionConstant.STUDENT_ID_PARAM);
         try {
             courseId = Integer.parseInt(courseIdParamValue);
             studentId = Integer.parseInt(studIdParamValue);
@@ -59,7 +60,7 @@ public class ShowStudentAction extends AbstractAction {
             }
         }
         request.setAttribute(STUDENT_PARAM, student);
-        request.setAttribute(COURSE_ID_PARAM, courseId);
+        request.setAttribute(ActionConstant.COURSE_ID_PARAM, courseId);
         request.setAttribute(COMPLETION_INFO_PARAM, completionInfo);
         LOG.debug("Attributes were set into the request: {},{},{}", student, courseId, completionInfo);
         return STUDENT_JSP;

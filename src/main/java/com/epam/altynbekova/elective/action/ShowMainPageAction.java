@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class ShowMainPageAction extends AbstractAction {
-    public static final String INDEX_JSP = "index";
+    private static final String INDEX_JSP = "index";
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ActionException {

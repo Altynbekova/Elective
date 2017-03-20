@@ -7,6 +7,7 @@ import com.epam.altynbekova.elective.exception.ActionException;
 import com.epam.altynbekova.elective.exception.EntityExistsException;
 import com.epam.altynbekova.elective.exception.ServiceException;
 import com.epam.altynbekova.elective.service.CourseService;
+import com.epam.altynbekova.elective.util.ActionConstant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -36,7 +37,7 @@ public class AddNewCourseAction extends AbstractAction{
         Course course= new Course();
         course.setName(courseName);
         course.setDescription(courseDescription);
-        User user=(User)request.getSession().getAttribute(USER);
+        User user=(User)request.getSession().getAttribute(ActionConstant.USER_ATTRIBUTE);
         Lecturer lecturer = new Lecturer(user.getId());
         course.setLecturer(lecturer);
 
@@ -44,7 +45,7 @@ public class AddNewCourseAction extends AbstractAction{
         try {
             request.getSession().removeAttribute(COURSE_EXISTS_PARAM);
             courseService.addNewCourse(course);
-            return REDIRECT_TO_ADD_COURSE_RESULT +SUCCESS;
+            return REDIRECT_TO_ADD_COURSE_RESULT +ActionConstant.SUCCESS;
         }
         catch (EntityExistsException e){
             LOG.error(e.getMessage(),e);

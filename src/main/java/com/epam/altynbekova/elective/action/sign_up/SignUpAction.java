@@ -4,6 +4,7 @@ import com.epam.altynbekova.elective.action.AbstractAction;
 import com.epam.altynbekova.elective.exception.ActionException;
 import com.epam.altynbekova.elective.exception.SignUpActionException;
 import com.epam.altynbekova.elective.exception.UserExistsException;
+import com.epam.altynbekova.elective.util.ActionConstant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -34,7 +35,7 @@ public class SignUpAction extends AbstractAction {
             }
         }catch (UserExistsException e){
             LOG.error(e.getMessage(), e);
-            request.getSession().setAttribute(REGISTER_ERROR_ATTRIBUTE, REGISTER_ERROR_MSG);
+            request.getSession().setAttribute(ActionConstant.REGISTER_ERROR_ATTRIBUTE, ActionConstant.REGISTER_ERROR_MSG);
             return redirectToRegister;
 
         }catch (SignUpActionException e){

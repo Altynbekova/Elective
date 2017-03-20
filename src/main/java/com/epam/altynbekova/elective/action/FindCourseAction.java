@@ -4,6 +4,7 @@ import com.epam.altynbekova.elective.entity.Course;
 import com.epam.altynbekova.elective.exception.ActionException;
 import com.epam.altynbekova.elective.exception.ServiceException;
 import com.epam.altynbekova.elective.service.CourseService;
+import com.epam.altynbekova.elective.util.ActionConstant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,14 +19,14 @@ public class FindCourseAction extends AbstractAction {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ActionException {
-        request.getSession().removeAttribute(COURSES);
+        request.getSession().removeAttribute(ActionConstant.COURSES_ATTRIBUTE);
 
         String courseName = request.getParameter(COURSE_NAME_PARAM);
         CourseService courseService = new CourseService();
         try {
             List<Course> courses = courseService.getCoursesByName(courseName);
-            request.getSession().setAttribute(COURSES, courses);
-            return REDIRECT_TO_FOUND_COURSES +SUCCESS;
+            request.getSession().setAttribute(ActionConstant.COURSES_ATTRIBUTE, courses);
+            return REDIRECT_TO_FOUND_COURSES +ActionConstant.SUCCESS;
 
         } catch (ServiceException e) {
             LOG.error("Cannot find any course", e.getMessage(),e);

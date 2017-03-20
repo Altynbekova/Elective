@@ -3,6 +3,7 @@ package com.epam.altynbekova.elective.action.sign_up;
 import com.epam.altynbekova.elective.action.AbstractAction;
 import com.epam.altynbekova.elective.entity.User;
 import com.epam.altynbekova.elective.exception.*;
+import com.epam.altynbekova.elective.util.ActionConstant;
 import com.epam.altynbekova.elective.validator.FormValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,10 +23,10 @@ abstract class UserSignUpAction<T extends User> extends AbstractAction {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response)
-            throws SignUpActionException, UserExistsException {
+            throws SignUpActionException {
 
-        String login = request.getParameter(LOGIN_PARAM);
-        request.getSession().setAttribute(LOGIN_PARAM, login);
+        String login = request.getParameter(ActionConstant.LOGIN_PARAM);
+        request.getSession().setAttribute(ActionConstant.LOGIN_PARAM, login);
 
         boolean formIsValid;
         try {
@@ -51,7 +52,7 @@ abstract class UserSignUpAction<T extends User> extends AbstractAction {
             LOG.error(e.getMessage(), e);
             throw new SignUpActionException(e);
         }
-        request.getSession().removeAttribute(REGISTER_ERROR_ATTRIBUTE);
+        request.getSession().removeAttribute(ActionConstant.REGISTER_ERROR_ATTRIBUTE);
         return REDIRECT_REGISTER_SUCCESS;
     }
 
@@ -61,5 +62,5 @@ abstract class UserSignUpAction<T extends User> extends AbstractAction {
 
     protected abstract T setRequestParametersTo(T user, HttpServletRequest request);
 
-    protected abstract T registerUser(T user) throws ServiceException, EntityExistsException;
+    protected abstract T registerUser(T user) throws ServiceException;
 }

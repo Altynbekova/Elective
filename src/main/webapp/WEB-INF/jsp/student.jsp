@@ -10,7 +10,7 @@
 <fmt:message key="title.student" var="title"/>
 <t:page-template title="${title}">
     <jsp:body>
-        <c:if test="${!completionInfo.isComplete()}">
+        <c:if test="${completionInfo.grade==0}">
             <p class="text-danger"><fmt:message key="label.course.incomplete.message"/></p>
         </c:if>
         <h4><fmt:message key="role.student"/></h4>

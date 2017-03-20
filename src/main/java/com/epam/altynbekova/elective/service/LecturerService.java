@@ -12,7 +12,7 @@ import org.mindrot.jbcrypt.BCrypt;
 
 public class LecturerService {
 
-    public Lecturer register(Lecturer lecturer) throws ServiceException, EntityExistsException {
+    public Lecturer register(Lecturer lecturer) throws ServiceException {
         lecturer.setPassword(BCrypt.hashpw(lecturer.getPassword(), BCrypt.gensalt()));
 
         try (DaoFactory daoFactory = DaoFactory.createJdbcFactory()) {

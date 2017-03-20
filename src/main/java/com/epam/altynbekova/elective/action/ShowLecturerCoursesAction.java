@@ -5,6 +5,7 @@ import com.epam.altynbekova.elective.entity.User;
 import com.epam.altynbekova.elective.exception.ActionException;
 import com.epam.altynbekova.elective.exception.ServiceException;
 import com.epam.altynbekova.elective.service.CourseService;
+import com.epam.altynbekova.elective.util.ActionConstant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,11 +19,11 @@ public class ShowLecturerCoursesAction extends AbstractAction {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ActionException {
-        User user = (User) request.getSession().getAttribute(USER);
+        User user = (User) request.getSession().getAttribute(ActionConstant.USER_ATTRIBUTE);
         CourseService courseService = new CourseService();
         try {
             final List<Course> courses = courseService.getCoursesFor(user);
-            request.setAttribute(COURSES, courses);
+            request.setAttribute(ActionConstant.COURSES_ATTRIBUTE, courses);
         } catch (ServiceException e) {
             LOG.error(e.getMessage(), e);
             throw new ActionException(e);

@@ -33,10 +33,10 @@
                                 </a></td>
                             <td>${courseEntry.key.description}</td>
                             <td class="small">
-                                <c:if test="${courseEntry.value.isComplete()}">
+                                <c:if test="${isComplete}">
                                     <span class="glyphicon glyphicon-ok text-success small"></span>
                                 </c:if>
-                                <c:if test="${not courseEntry.value.isComplete()}">
+                                <c:if test="${not isComplete}">
                                     <span class="glyphicon glyphicon-remove text-danger small"></span>
                                 </c:if>
                             </td>

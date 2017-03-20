@@ -12,6 +12,7 @@ import java.beans.IntrospectionException;
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.InvocationTargetException;
+import java.text.MessageFormat;
 import java.util.*;
 
 public class FormValidator {
@@ -121,27 +122,33 @@ public class FormValidator {
                 String validatorField = keyParts[keyParts.length - 1];
 
                 if (key.contains(validatorNumberFullName)) {
-                    try {
-                        Object objValue = getPropertyValue(value);
-                        BeanInfo beanInfo = Introspector.getBeanInfo(validator.getClass());
-                        PropertyDescriptor[] descriptors = beanInfo.getPropertyDescriptors();
-
-                        for (PropertyDescriptor descriptor : descriptors) {
-                            if (!validatorField.equals(CLASS) && descriptor.getName().equals(validatorField))
-                                descriptor.getWriteMethod().invoke(validator, objValue);
-
-                        }
-                    } catch (IntrospectionException | InvocationTargetException | IllegalAccessException e) {
-                        throw new FormValidatorException(e.getMessage(), e);
-                    }
+                    setFieldFor(validator, validatorField, value);
                 }
             }
             LOG.debug("Finished filling fields of validator class");
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException e) {
-            throw new FormValidatorException("Cannot set fields for validator ", e);
+            LOG.error("Cannot create instance of validator class {}", keyValue, e);
+            throw new FormValidatorException("Cannot create instance of validator", e);
         }
 
         return validator;
+    }
+
+    private void setFieldFor(Validator validator, String fieldName, String fieldValue) throws FormValidatorException {
+        try {
+            Object objValue = getPropertyValue(fieldValue);
+            BeanInfo beanInfo = Introspector.getBeanInfo(validator.getClass());
+            PropertyDescriptor[] descriptors = beanInfo.getPropertyDescriptors();
+
+            for (PropertyDescriptor descriptor : descriptors) {
+                if (!fieldName.equals(CLASS) && descriptor.getName().equals(fieldName))
+                    descriptor.getWriteMethod().invoke(validator, objValue);
+            }
+        } catch (IntrospectionException | InvocationTargetException | IllegalAccessException e) {
+            LOG.error("Cannot set value for validator field fieldName={}, fieldValue={}", fieldName,fieldValue);
+            throw new FormValidatorException(MessageFormat.format(
+                    "Cannot set value for validator field {0}", fieldName), e);
+        }
     }
 
     private Object getPropertyValue(String value) {

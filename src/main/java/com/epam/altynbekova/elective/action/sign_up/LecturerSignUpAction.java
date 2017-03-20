@@ -5,6 +5,7 @@ import com.epam.altynbekova.elective.entity.Role;
 import com.epam.altynbekova.elective.exception.EntityExistsException;
 import com.epam.altynbekova.elective.exception.ServiceException;
 import com.epam.altynbekova.elective.service.LecturerService;
+import com.epam.altynbekova.elective.util.ActionConstant;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -27,16 +28,16 @@ class LecturerSignUpAction extends UserSignUpAction<Lecturer> {
     protected Lecturer setRequestParametersTo(Lecturer lecturer, HttpServletRequest request) {
         lecturer=new Lecturer();
         lecturer.setRole(Role.LECTURER);
-        lecturer.setFirstName(request.getParameter(FIRST_NAME_PARAM));
-        lecturer.setLastName(request.getParameter(LAST_NAME_PARAM));
+        lecturer.setFirstName(request.getParameter(ActionConstant.FIRST_NAME_PARAM));
+        lecturer.setLastName(request.getParameter(ActionConstant.LAST_NAME_PARAM));
         lecturer.setJobTitle(request.getParameter(JOB_TITLE_PARAM));
-        lecturer.setLogin(request.getParameter(LOGIN_PARAM));
-        lecturer.setPassword(request.getParameter(PASSWORD_PARAM));
+        lecturer.setLogin(request.getParameter(ActionConstant.LOGIN_PARAM));
+        lecturer.setPassword(request.getParameter(ActionConstant.PASSWORD_PARAM));
         return lecturer;
     }
 
     @Override
-    protected Lecturer registerUser(Lecturer lecturer) throws ServiceException, EntityExistsException {
+    protected Lecturer registerUser(Lecturer lecturer) throws ServiceException {
         try {
             LecturerService lecturerService = new LecturerService();
             return lecturerService.register(lecturer);

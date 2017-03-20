@@ -6,8 +6,6 @@ import com.epam.altynbekova.elective.exception.JdbcDaoException;
 import com.epam.altynbekova.elective.exception.NotUniqueJdbcDaoException;
 import com.epam.altynbekova.elective.exception.PropertyManagerException;
 import com.epam.altynbekova.elective.util.PropertyManager;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -30,17 +28,16 @@ abstract class JdbcDao<T extends BaseEntity> implements Dao<T> {
     protected static final int INDEX_3 = 3;
     protected static final int INDEX_4 = 4;
     protected static final int INDEX_5 = 5;
-    private static final Logger LOG = LoggerFactory.getLogger(JdbcDao.class);
     private static final String QUERY_FILE_NAME = "query.properties";
     private static final int FIRST_LIST_ELEMENT_INDEX = 0;
     protected Connection connection;
 
-    public JdbcDao(Connection connection) {
+    JdbcDao(Connection connection) {
         this.connection = connection;
     }
 
     @Override
-    public T save(T entity) throws JdbcDaoException, NotUniqueJdbcDaoException {
+    public T save(T entity) throws JdbcDaoException {
         String query;
         if (entity.getId() != null) {
             query = getQuery(getUpdateQueryKey());
@@ -96,10 +93,8 @@ abstract class JdbcDao<T extends BaseEntity> implements Dao<T> {
         List<T> entities = findAllByName(entityName);
         if (entities.size() != 0)
             return entities.get(FIRST_LIST_ELEMENT_INDEX);
-        else {
-            LOG.error("Entity with name {} doesn't exist", entityName);
+        else
             throw new JdbcDaoException(MessageFormat.format("Entity with name {0} doesn't exist", entityName));
-        }
     }
 
     @Override
@@ -117,7 +112,7 @@ abstract class JdbcDao<T extends BaseEntity> implements Dao<T> {
         }
     }
 
-    private String getQuery(String key) throws JdbcDaoException {
+    protected String getQuery(String key) throws JdbcDaoException {
         String query;
         try {
             PropertyManager propertyManager = new PropertyManager(QUERY_FILE_NAME);
@@ -140,23 +135,9 @@ abstract class JdbcDao<T extends BaseEntity> implements Dao<T> {
 
     }
 
-    protected String getQueryFileName() {
-        return QUERY_FILE_NAME;
-    }
-
     protected abstract void setFieldsForInsertTo(PreparedStatement ps, T entity) throws JdbcDaoException;
 
     protected abstract void setFieldsForUpdateTo(PreparedStatement ps, T entity) throws JdbcDaoException;
-
-    protected T setResultSetTo(T entity, ResultSet rs) throws JdbcDaoException {
-        List<T> entities = new ArrayList<>();
-        try {
-            setResultSetTo(entities, rs);
-            return entities.get(FIRST_LIST_ELEMENT_INDEX);
-        } catch (SQLException e) {
-            throw new JdbcDaoException("Cannot set values for fields of entity", e);
-        }
-    }
 
     protected abstract void setResultSetTo(List<T> entity, ResultSet rs) throws SQLException;
 

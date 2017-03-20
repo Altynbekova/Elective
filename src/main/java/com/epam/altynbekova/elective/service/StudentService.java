@@ -13,7 +13,7 @@ import org.mindrot.jbcrypt.BCrypt;
 import java.util.List;
 
 public class StudentService {
-    public Student register(Student student) throws ServiceException, EntityExistsException {
+    public Student register(Student student) throws ServiceException {
         student.setPassword(BCrypt.hashpw(student.getPassword(), BCrypt.gensalt()));
 
         try (DaoFactory daoFactory = DaoFactory.createJdbcFactory()) {
@@ -59,7 +59,7 @@ public class StudentService {
         }
     }
 
-    public boolean registerForCourse(int studentId, int courseId) throws ServiceException, EntityExistsException {
+    public boolean registerForCourse(int studentId, int courseId) throws ServiceException {
         try (DaoFactory daoFactory = DaoFactory.createJdbcFactory()) {
             StudentDao studentDao = daoFactory.getStudentDao();
             return studentDao.addCourse(studentId, courseId);

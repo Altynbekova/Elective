@@ -4,6 +4,7 @@ import com.epam.altynbekova.elective.entity.Course;
 import com.epam.altynbekova.elective.exception.ActionException;
 import com.epam.altynbekova.elective.exception.ServiceException;
 import com.epam.altynbekova.elective.service.CourseService;
+import com.epam.altynbekova.elective.util.ActionConstant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,7 +21,7 @@ public class ShowAllCoursesAction extends AbstractAction {
         CourseService courseService = new CourseService();
         try {
             final List<Course> courses = courseService.getAllCourses();
-            request.setAttribute(COURSES, courses);
+            request.setAttribute(ActionConstant.COURSES_ATTRIBUTE, courses);
         } catch (ServiceException e) {
             LOG.error(e.getMessage(), e);
             return ALL_COURSES_JSP;

@@ -60,11 +60,13 @@
                         <fmt:message key="locale.change"/><span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li onclick="$.get('${contextPath}/do/?action=set-locale&locale=en');location.reload();">
-                            <a href="#"><fmt:message key="locale.english"/></a>
+                        <li>
+                            <a href="${contextPath}/do/?action=set-locale&locale=en">
+                                <fmt:message key="locale.english"/></a>
                         </li>
-                        <li onclick="$.get('${contextPath}/do/?action=set-locale&locale=ru');location.reload();">
-                            <a href="#"><fmt:message key="locale.russian"/></a>
+                        <li>
+                            <a href="${contextPath}/do/?action=set-locale&locale=ru">
+                                <fmt:message key="locale.russian"/></a>
                         </li>
                     </ul>
                 </li>

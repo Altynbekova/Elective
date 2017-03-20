@@ -53,7 +53,7 @@ public class CourseService {
         }
     }
 
-    public Course addNewCourse(Course course) throws ServiceException, EntityExistsException {
+    public Course addNewCourse(Course course) throws ServiceException {
         try (DaoFactory factory = DaoFactory.createJdbcFactory()) {
             CourseDao courseDao = factory.getCourseDao();
             return courseDao.save(course);

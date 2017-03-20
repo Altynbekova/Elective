@@ -1,6 +1,7 @@
 package com.epam.altynbekova.elective.action;
 
 import com.epam.altynbekova.elective.exception.ActionException;
+import com.epam.altynbekova.elective.util.ActionConstant;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,8 +19,11 @@ public class ChangeLocaleAction extends AbstractAction {
         if (locale != null) {
             if (locale.equals(RUSSIAN_LOCALE) || locale.equals(ENGLISH_LOCALE))
                 Config.set(request.getSession(), Config.FMT_LOCALE, new Locale(locale));
-        }
 
-        return REDIRECT + request.getHeader(REFERER);
+            String referer = request.getHeader(ActionConstant.REFERER);
+            org.slf4j.LoggerFactory.getLogger(ChangeLocaleAction.class).info("{}={}", ActionConstant.REFERER, referer);
+            return ActionConstant.REDIRECT+referer.substring(referer.lastIndexOf("/do/?action"));
+        }
+        return REDIRECT_MAIN_PAGE;
     }
 }

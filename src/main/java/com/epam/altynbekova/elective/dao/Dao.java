@@ -2,12 +2,11 @@ package com.epam.altynbekova.elective.dao;
 
 import com.epam.altynbekova.elective.entity.BaseEntity;
 import com.epam.altynbekova.elective.exception.DaoException;
-import com.epam.altynbekova.elective.exception.NotUniqueJdbcDaoException;
 
 import java.util.List;
 
 public interface Dao<T extends BaseEntity> {
-    T save(T entity) throws DaoException, NotUniqueJdbcDaoException;
+    T save(T entity) throws DaoException;
 
     T findById(int id) throws DaoException;
 

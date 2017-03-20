@@ -3,8 +3,6 @@ package com.epam.altynbekova.elective.dao.jdbc;
 import com.epam.altynbekova.elective.dao.LecturerDao;
 import com.epam.altynbekova.elective.entity.Lecturer;
 import com.epam.altynbekova.elective.exception.JdbcDaoException;
-import com.epam.altynbekova.elective.exception.PropertyManagerException;
-import com.epam.altynbekova.elective.util.PropertyManager;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -37,17 +35,12 @@ public class JdbcLecturerDao extends JdbcDao<Lecturer> implements LecturerDao {
 
     @Override
     protected void setFieldsForUpdateTo(PreparedStatement ps, Lecturer entity) throws JdbcDaoException {
-        throw new UnsupportedOperationException("Not implemented yet");
-    }
-
-    @Override
-    protected Lecturer setResultSetTo(Lecturer entity, ResultSet rs) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        throw new UnsupportedOperationException("setFieldsForUpdateTo() in JdbcLecturerDao isn't implemented");
     }
 
     @Override
     protected void setResultSetTo(List<Lecturer> entity, ResultSet rs) {
-
+        throw new UnsupportedOperationException("setResultSetTo() in JdbcLecturerDao isn't implemented");
     }
 
     @Override
@@ -57,34 +50,27 @@ public class JdbcLecturerDao extends JdbcDao<Lecturer> implements LecturerDao {
 
     @Override
     protected String getUpdateQueryKey() {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("Update query isn't implemented");
     }
 
     @Override
     protected String getSelectByIdQueryKey() {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("Select by id query isn't implemented");
     }
 
     @Override
     protected String getSelectByNameQueryKey() {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("Select by name query isn't implemented");
     }
 
     @Override
     public int insert(String jobTitle) throws JdbcDaoException {
-        try {
-            PropertyManager propertyManager = new PropertyManager(getQueryFileName());
-            String query = propertyManager.getProperty(INSERT_REF_QUERY_KEY);
+        String query = getQuery(INSERT_REF_QUERY_KEY);
             try (PreparedStatement ps = connection.prepareStatement(query)) {
                 ps.setString(INDEX_1, jobTitle);
-                ps.executeUpdate();
-                return -1;
+                return ps.executeUpdate();
             } catch (SQLException e) {
                 throw new JdbcDaoException("Cannot insert fields into the LECTURER table", e);
             }
-        } catch (PropertyManagerException e) {
-            throw new JdbcDaoException(MessageFormat.format
-                    ("Cannot get property value with key{0}", INSERT_REF_QUERY_KEY), e);
-        }
     }
 }

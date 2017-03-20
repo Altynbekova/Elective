@@ -4,6 +4,7 @@ import com.epam.altynbekova.elective.entity.User;
 import com.epam.altynbekova.elective.exception.ActionException;
 import com.epam.altynbekova.elective.exception.ServiceException;
 import com.epam.altynbekova.elective.service.UserService;
+import com.epam.altynbekova.elective.util.ActionConstant;
 import org.mindrot.jbcrypt.BCrypt;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,9 +26,9 @@ public class SignInAction extends AbstractAction {
         if (!validateForm(SIGN_IN_FORM, request))
             return REDIRECT_TO_SIGN_IN_FORM;
 
-        String login = request.getParameter(LOGIN_PARAM);
-        request.getSession().setAttribute(LOGIN_PARAM, login);
-        String password = request.getParameter(PASSWORD_PARAM);
+        String login = request.getParameter(ActionConstant.LOGIN_PARAM);
+        request.getSession().setAttribute(ActionConstant.LOGIN_PARAM, login);
+        String password = request.getParameter(ActionConstant.PASSWORD_PARAM);
 
         UserService userService = new UserService();
         User userFromDb;
@@ -45,7 +46,7 @@ public class SignInAction extends AbstractAction {
             return REDIRECT_TO_SIGN_IN_FORM;
         } else {
             request.getSession().removeAttribute(SIGN_IN_ERROR);
-            request.getSession().setAttribute(USER, userFromDb);
+            request.getSession().setAttribute(ActionConstant.USER_ATTRIBUTE, userFromDb);
             return REDIRECT_TO_SIGN_IN_SUCCESS;
         }
     }

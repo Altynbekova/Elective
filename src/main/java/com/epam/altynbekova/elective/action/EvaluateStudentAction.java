@@ -6,6 +6,7 @@ import com.epam.altynbekova.elective.entity.Student;
 import com.epam.altynbekova.elective.exception.ActionException;
 import com.epam.altynbekova.elective.exception.ServiceException;
 import com.epam.altynbekova.elective.service.StudentService;
+import com.epam.altynbekova.elective.util.ActionConstant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -27,8 +28,8 @@ public class EvaluateStudentAction extends AbstractAction {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ActionException {
-        String studIdParamValue = request.getParameter(STUDENT_ID_PARAM);
-        String courseIdParamValue = request.getParameter(COURSE_ID_PARAM);
+        String studIdParamValue = request.getParameter(ActionConstant.STUDENT_ID_PARAM);
+        String courseIdParamValue = request.getParameter(ActionConstant.COURSE_ID_PARAM);
 
         if (!validateForm(EVALUATE_STUDENT_FORM, request))
             return REDIRECT_TO_EVALUATE_FORM +
@@ -55,13 +56,13 @@ public class EvaluateStudentAction extends AbstractAction {
             throw new ActionException(e);
         } catch (ServiceException e) {
             LOG.error("Cannot update course {}={} completion info for student with {}={}",
-                    COURSE_ID_PARAM, courseIdParamValue,
-                    STUDENT_ID_PARAM, studIdParamValue, e.getMessage(),e);
+                    ActionConstant.COURSE_ID_PARAM, courseIdParamValue,
+                    ActionConstant.STUDENT_ID_PARAM, studIdParamValue, e.getMessage(),e);
             throw new ActionException(e);
 
         }
-        request.getSession().setAttribute(COURSE_ID_PARAM, evaluatedStudent.getCourses().keySet().iterator().next().getId());
-        request.getSession().setAttribute(STUDENT_ID_PARAM, evaluatedStudent.getId());
+        request.getSession().setAttribute(ActionConstant.COURSE_ID_PARAM, evaluatedStudent.getCourses().keySet().iterator().next().getId());
+        request.getSession().setAttribute(ActionConstant.STUDENT_ID_PARAM, evaluatedStudent.getId());
 
         return REDIRECT_EVALUATE_RESULT_SUCCESS;
     }

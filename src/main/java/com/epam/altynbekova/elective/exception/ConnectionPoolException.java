@@ -1,9 +1,6 @@
 package com.epam.altynbekova.elective.exception;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class ConnectionPoolException extends Exception {
-    private static final Logger LOG= LoggerFactory.getLogger(ConnectionPoolException.class);
 
     public ConnectionPoolException(String message) {
         super(message);
@@ -11,6 +8,5 @@ public class ConnectionPoolException extends Exception {
 
     public ConnectionPoolException(String message, Throwable cause) {
         super(message, cause);
-        LOG.error(message, cause);
     }
 }
