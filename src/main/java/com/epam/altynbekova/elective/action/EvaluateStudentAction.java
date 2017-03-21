@@ -53,11 +53,13 @@ public class EvaluateStudentAction extends AbstractAction {
             StudentService studentService = new StudentService();
             evaluatedStudent = studentService.evaluateStudent(student);
         } catch (NumberFormatException e) {
+            LOG.error("Invalid number parameter courseId={} and/or studentId={}",
+                    courseIdParamValue, studIdParamValue, e.getMessage(), e);
             throw new ActionException(e);
         } catch (ServiceException e) {
             LOG.error("Cannot update course {}={} completion info for student with {}={}",
                     ActionConstant.COURSE_ID_PARAM, courseIdParamValue,
-                    ActionConstant.STUDENT_ID_PARAM, studIdParamValue, e.getMessage(),e);
+                    ActionConstant.STUDENT_ID_PARAM, studIdParamValue, e.getMessage(), e);
             throw new ActionException(e);
 
         }

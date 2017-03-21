@@ -18,7 +18,7 @@ import java.util.Map;
 abstract class UserSignUpAction<T extends User> extends AbstractAction {
     private static final Logger LOG = LoggerFactory.getLogger(UserSignUpAction.class);
 
-    public UserSignUpAction() {
+    UserSignUpAction() {
     }
 
     @Override
@@ -34,6 +34,7 @@ abstract class UserSignUpAction<T extends User> extends AbstractAction {
             Map<String, List<String>> fieldErrors = validator.validate(getFormName(), request);
             formIsValid = validator.isValid(request, fieldErrors);
         } catch (FormValidatorException e) {
+            LOG.error(e.getMessage(),e);
             throw new SignUpActionException(MessageFormat.format
                     ("Cannot create validator for '{0}' form", getFormName()), e);
         }

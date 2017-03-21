@@ -40,8 +40,10 @@ public class PropertyManager {
             propertyValues.addAll(properties.entrySet().stream().filter
                     (entry -> entry.getKey().toString().startsWith(keyPrefix)).
                     map(entry -> entry.getValue().toString()).collect(Collectors.toList()));
-        } else
+        } else {
+            LOG.error("Cannot get property value with keyPrefix={}. Properties are empty",keyPrefix);
             throw new PropertyManagerException("Properties are empty");
+        }
         return propertyValues;
     }
 
@@ -51,8 +53,10 @@ public class PropertyManager {
             Set<Map.Entry<Object, Object>> entries = properties.entrySet();
             propertyValues.addAll(entries.stream().map(
                     entry -> entry.getValue().toString()).collect(Collectors.toList()));
-        } else
+        } else {
+            LOG.error("Cannot get any property value. Properties are empty");
             throw new PropertyManagerException("Properties are empty");
+        }
         return propertyValues;
     }
 
