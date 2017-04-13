@@ -99,13 +99,6 @@ class JdbcStudentDao extends JdbcDao<Student> implements StudentDao {
             ResultSet rs = ps.executeQuery();
             List<Student> students = new ArrayList<>();
             setResultSetTo(students, rs);
-                /*while (rs.next()) {
-                    Student student = new Student();
-                    student.setId(rs.getInt(STUDENT_ID_COLUMN));
-                    student.setFirstName(rs.getString(FIRST_NAME_COLUMN));
-                    student.setLastName(rs.getString(LAST_NAME_COLUMN));
-                    students.add(student);
-                }*/
             return students;
         } catch (SQLException e) {
             throw new JdbcDaoException("Cannot find student registered for course with courseId=", e);
