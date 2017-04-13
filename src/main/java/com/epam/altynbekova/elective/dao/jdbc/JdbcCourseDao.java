@@ -129,9 +129,6 @@ public class JdbcCourseDao extends JdbcDao<Course> implements CourseDao {
         String query = getQuery(INVALIDATE_STUDENTS_QUERY_KEY);
         try (PreparedStatement ps = connection.prepareStatement(query)) {
             ps.setInt(INDEX_1, courseId);
-            /*LOG.debug("ps.executeUpdate()...");
-            int rowCount =
-            LOG.debug("ps.executeUpdate()={}", rowCount);*/
             ps.executeUpdate();
         } catch (SQLException e) {
             throw new JdbcDaoException("Cannot set NULL for students who completed course", e);

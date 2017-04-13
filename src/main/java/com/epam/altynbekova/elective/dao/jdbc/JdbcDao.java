@@ -38,29 +38,28 @@ abstract class JdbcDao<T extends BaseEntity> implements Dao<T> {
 
     @Override
     public T save(T entity) throws JdbcDaoException {
-        String query;
-        if (entity.getId() != null) {
-            query = getQuery(getUpdateQueryKey());
-            try (PreparedStatement ps = connection.prepareStatement(query)) {
-                setFieldsForUpdateTo(ps, entity);
-                ps.executeUpdate();
-            } catch (SQLException e) {
-                throw new JdbcDaoException(MessageFormat.format("Cannot update entity {} in database", entity), e);
-            }
-        } else {
-            query = getQuery(getInsertQueryKey());
+        String query = getQuery(getInsertQueryKey());
             try (PreparedStatement ps = connection.prepareStatement(query)) {
                 setFieldsForInsertTo(ps, entity);
                 ps.executeUpdate();
                 setId(ps, entity);
+                return entity;
             } catch (SQLException e) {
                 if (e.getErrorCode() == NOT_UNIQUE_ERROR_VENDOR_CODE)
                     throw new NotUniqueJdbcDaoException("Cannot save entity in database. Check unique fields", e);
                 throw new JdbcDaoException(MessageFormat.format("Cannot insert entity {} into database", entity), e);
             }
-        }
+    }
 
-        return entity;
+    @Override
+    public int update(T entity) throws JdbcDaoException {
+        String query = getQuery(getUpdateQueryKey());
+            try (PreparedStatement ps = connection.prepareStatement(query)) {
+                setFieldsForUpdateTo(ps, entity);
+                return ps.executeUpdate();
+            } catch (SQLException e) {
+                throw new JdbcDaoException(MessageFormat.format("Cannot update entity {} in database", entity), e);
+            }
     }
 
     @Override

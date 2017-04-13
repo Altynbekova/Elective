@@ -8,6 +8,8 @@ import java.util.List;
 public interface Dao<T extends BaseEntity> {
     T save(T entity) throws DaoException;
 
+    int update(T entity) throws DaoException;
+
     T findById(int id) throws DaoException;
 
     List<T> findAllById(int id) throws DaoException;
