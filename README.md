@@ -17,6 +17,10 @@
     * логин, пароль - sa;    
 3. заполнить БД тестовыми данными, выполнив скрипт \resources\init.sql. 
 
-Путь к log-файлу: ${catalina.home}/logs/elective.log
+Путь к log-файлу: c:\log\elective.log
+
+Тестовые данные для входа в систему:
+* преподавателя: логин - admin, пароль - adminadmin;
+* студента: логин - user, пароль - useruser.
 
 
