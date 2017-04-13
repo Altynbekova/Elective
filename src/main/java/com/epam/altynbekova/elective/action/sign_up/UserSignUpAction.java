@@ -10,13 +10,13 @@ import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import java.text.MessageFormat;
 import java.util.List;
 import java.util.Map;
 
 abstract class UserSignUpAction<T extends User> extends AbstractAction {
     private static final Logger LOG = LoggerFactory.getLogger(UserSignUpAction.class);
+    private static final String REDIRECT_REGISTER_SUCCESS = "redirect:/do/?action=sign-up-success";
 
     UserSignUpAction() {
     }

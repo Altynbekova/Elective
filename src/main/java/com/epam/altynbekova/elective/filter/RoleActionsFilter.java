@@ -16,11 +16,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import static com.epam.altynbekova.elective.util.ActionConstant.ACTION_PARAM;
+import static com.epam.altynbekova.elective.util.ActionConstant.USER_ATTRIBUTE;
+
 public class RoleActionsFilter implements Filter {
     private static final Logger LOG = LoggerFactory.getLogger(RoleActionsFilter.class);
     private static final String ROLE_ACTIONS_FILE_NAME = "role-actions.properties";
-    private static final String ACTION_PARAM = "action";
-    private static final String USER_PARAM = "user";
     private static final String ANONYM_PREFIX = "anonym";
     private static final String STUDENT_PREFIX = "student";
     private static final String LECTURER_PREFIX = "lecturer";
@@ -49,7 +50,7 @@ public class RoleActionsFilter implements Filter {
 
         String actionName = req.getParameter(ACTION_PARAM);
 
-        final User user = (User) req.getSession().getAttribute(USER_PARAM);
+        final User user = (User) req.getSession().getAttribute(USER_ATTRIBUTE);
         List<String> actionList;
 
         if (user != null) {

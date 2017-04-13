@@ -13,16 +13,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import static com.epam.altynbekova.elective.util.ActionConstant.ACTION_PARAM;
+import static com.epam.altynbekova.elective.util.ActionConstant.REDIRECT;
+
 public class FrontControllerServlet extends HttpServlet {
     private final static Logger LOG = LoggerFactory.getLogger(FrontControllerServlet.class);
-    private static final String ACTION_PARAM = "action";
     private static final String SERVLET_ERROR_STATUS_CODE = "javax.servlet.error.status_code";
     private static final String SERVLET_ERROR_EXCEPTION = "javax.servlet.error.exception";
     private static final String SERVLET_ERROR_REQUEST_URI = "javax.servlet.error.request_uri";
     private static final String JSP_DIRECTORY_PATH = "/WEB-INF/jsp/";
     private static final String ERROR_PAGE = "error-page";
     private static final String JSP_EXTENSION = ".jsp";
-    private static final String REDIRECT = "redirect:";
     private ActionFactory actionFactory;
 
     @Override

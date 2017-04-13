@@ -5,6 +5,7 @@ public final class ActionConstant {
 
     public static final String REFERER = "referer";
     public static final String REDIRECT = "redirect:";
+    public static final String ACTION_PARAM = "action";
     public static final String FIRST_NAME_PARAM = "firstName";
     public static final String LAST_NAME_PARAM = "lastName";
     public static final String LOGIN_PARAM = "login";
@@ -19,4 +20,5 @@ public final class ActionConstant {
     public static final String STUDENTS_ATTRIBUTE = "students";
     public static final String REGISTER_ERROR_ATTRIBUTE = "registerErrors";
     public static final String REGISTER_ERROR_MSG = "message.error.login.exists";
+    public static final String REDIRECT_MAIN_PAGE = "redirect:/do/?action=show-main-page";
 }

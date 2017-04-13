@@ -11,8 +11,6 @@ import java.util.List;
 import java.util.Map;
 
 public abstract class AbstractAction implements Action {
-    protected static final String REDIRECT_MAIN_PAGE = "redirect:/do/?action=show-main-page";
-    protected static final String REDIRECT_REGISTER_SUCCESS = "redirect:/do/?action=sign-up-success";
     private static final Logger LOG = LoggerFactory.getLogger(AbstractAction.class);
 
     protected boolean validateForm(String formName, HttpServletRequest request) throws ActionException {
