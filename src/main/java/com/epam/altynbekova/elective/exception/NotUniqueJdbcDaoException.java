@@ -1,8 +1,6 @@
 package com.epam.altynbekova.elective.exception;
 
 public class NotUniqueJdbcDaoException extends RuntimeException {
-    public NotUniqueJdbcDaoException() {
-    }
 
     public NotUniqueJdbcDaoException(String message) {
         super(message);

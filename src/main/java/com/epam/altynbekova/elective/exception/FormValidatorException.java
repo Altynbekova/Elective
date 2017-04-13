@@ -1,8 +1,6 @@
 package com.epam.altynbekova.elective.exception;
 
 public class FormValidatorException extends Exception {
-    public FormValidatorException() {
-    }
 
     public FormValidatorException(String message) {
         super(message);

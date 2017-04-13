@@ -1,8 +1,6 @@
 package com.epam.altynbekova.elective.exception;
 
 public class EntityExistsException extends RuntimeException {
-    public EntityExistsException() {
-    }
 
     public EntityExistsException(String message) {
         super(message);
